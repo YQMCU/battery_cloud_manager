@@ -1,0 +1,75 @@
+# required 项目标题 title
+site_name: 云电池开发备忘录
+
+# 完整规范的站点URL
+site_url: https://yqmcu.github.io
+
+# 发布项目仓库
+repo_url: https://github.com/YQMCU/ld_cloud_note
+
+
+# 仓库类型
+repo_name: GitHub
+
+# 站点描述
+site_description: 云平台开发样品开发文档
+
+# 作者
+site_author: 缘起
+
+# 版权
+copyright: yqmcu
+
+# 远程分支
+remote_branch: gh-pages
+
+# 远程名称
+remote_name: origin
+
+
+pages:
+    - Home: index.md
+    - 研发准备: 
+      - 原理架构: pre/frame.md
+      - BMS寄存器: pre/reg.md
+    - 软件设计: 
+      - 设备端: soft/device.md
+      - 服务器: soft/server.md
+      - 云平台: soft/cloud.md
+    - 硬件设计:
+      - 电路: hard/circuit.md
+      - 模块: hard/air810.md
+      - BOM: hard/bom.md
+    - 样机测试:
+      - 性能总结: test/perform.md
+      - 通讯demo: test/uart.md
+      - 测试视频: test/test.md
+    - 参考资料: reference.md
+    - 其他: 
+      - 合宙科技: other/openluat.md
+      - 其他: other/others.md
+# theme: readthedocs
+
+theme_dir: 'themes/docskimmer/mkdocs_docskimmer'
+
+# 文档目录
+docs_dir: docs
+
+# 生成站点目录
+site_dir: site
+
+# 附加css样式表
+# extra_css:
+    # -- css/extra.css
+    
+# 附加js脚本
+# extra_javascript
+    # -- js/demo.js
+    
+# 附加内容
+extra:
+    version: 0.1
+    
+# 页面url中不显示html 默认
+use_directory_urls: true
+    

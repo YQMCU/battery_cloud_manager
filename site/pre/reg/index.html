@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>BMS寄存器 - 云电池开发备忘录</title>
+           
+        <meta name="description" content="云平台开发样品开发文档">
+        <meta name="author" content="缘起">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css">
+    <link rel="stylesheet" href="../../css/docskimmer.css" type="text/css">
+
+    
+  
+
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+	  <link rel="apple-touch-icon" href="../../img/apple-touch-icon.png">
+	  <link rel="apple-touch-icon" sizes="72x72" href="../../img/apple-touch-icon-72x72.png">
+	  <link rel="apple-touch-icon" sizes="114x114" href="../../img/apple-touch-icon-114x114.png">
+  </head>
+
+  <body>
+    <a class="skiptocontent" href="#maincontent" title="Skip to content (when browsing via audio)" accesskey="2" tabindex="1">skip to main content</a>
+    <div id="top" class="wrapper">
+    <header class="header-main" role="banner">
+  
+     <h2 class="header-main__heading"><a class="header-main__link" href="../..">云电池开发备忘录</a></h2>
+  
+</header>
+
+    
+        
+  <form class="form form--search" id="content_search" action="../../search.html" method="get" role="search">
+    <div class="form-group">
+      <label class="hidden" for="mkdocs-search-query">Search for:</label>
+      <input type="search" aria-label="Search" class="form__input" name="q" id="mkdocs-search-query" placeholder="Search the docs for..." tabindex="3"> <button type="submit" class="form__btn-submit">Search</button>
+    </div>
+  </form>
+
+    
+    
+    
+
+<nav class="nav-main" aria-label="Main menu" role="navigation">
+  <ul class="nav-main__level" role="menubar">
+    
+      
+          <li class="nav-main__item" role="menuitem">
+           	<a class="nav-main__link" href="../..">Home</a>
+          </li>
+      
+    
+      
+        <li class="nav-main__item nav-main__item--current" role="menuitem">
+          
+                               
+              <a class="nav-main__link" href="../frame/"> 研发准备</a>
+            
+          
+            
+          
+        </li>
+      
+    
+      
+        <li class="nav-main__item" role="menuitem">
+          
+                               
+              <a class="nav-main__link" href="../../soft/device/"> 软件设计</a>
+            
+          
+            
+          
+            
+          
+        </li>
+      
+    
+      
+        <li class="nav-main__item" role="menuitem">
+          
+                               
+              <a class="nav-main__link" href="../../hard/circuit/"> 硬件设计</a>
+            
+          
+            
+          
+            
+          
+        </li>
+      
+    
+      
+        <li class="nav-main__item" role="menuitem">
+          
+                               
+              <a class="nav-main__link" href="../../test/perform/"> 样机测试</a>
+            
+          
+            
+          
+            
+          
+        </li>
+      
+    
+      
+          <li class="nav-main__item" role="menuitem">
+           	<a class="nav-main__link" href="../../reference/">参考资料</a>
+          </li>
+      
+    
+      
+        <li class="nav-main__item" role="menuitem">
+          
+                               
+              <a class="nav-main__link" href="../../other/openluat/"> 其他</a>
+            
+          
+            
+          
+        </li>
+      
+    
+
+    
+    
+      <li class="nav-main__item nav-main__item--repo" role="menuitem">
+     	  <a class="nav-main__link nav-main__link--repo" href="https://github.com/YQMCU/ld_cloud_note">GitHub</a>
+      </li>
+    
+  </ul>
+</nav>
+
+    
+    <!-- BEGIN subnav -->
+    
+    
+      
+    
+      
+        
+        
+          
+        
+          
+            <aside class="section-toc" role="complementary" aria-label="Table of Contents for this section">
+            <ul>
+  
+    
+      
+    
+      
+        
+          
+            <li class="section-toc__item"><a href="../frame/" class="section-toc__link">原理架构</a></li>
+          
+        
+          
+            <li class="section-toc__item section-toc__item--active"><a href="./" class="section-toc__link section-toc__link--active"><span class="visually-hidden">Current: </span> BMS寄存器</a></li>
+          
+        
+      
+    
+      
+        
+          
+        
+          
+        
+          
+        
+      
+    
+      
+        
+          
+        
+          
+        
+          
+        
+      
+    
+      
+        
+          
+        
+          
+        
+          
+        
+      
+    
+      
+    
+      
+        
+          
+        
+          
+        
+      
+    
+  
+</ul>
+
+            </aside>
+          
+        
+      
+    
+      
+        
+        
+          
+        
+          
+        
+          
+        
+      
+    
+      
+        
+        
+          
+        
+          
+        
+          
+        
+      
+    
+      
+        
+        
+          
+        
+          
+        
+          
+        
+      
+    
+      
+    
+      
+        
+        
+          
+        
+          
+        
+      
+    
+
+    <button id="menu-hamburger" aria-label="Open menu table of contents for this page" type="button" title="Menu">&#9776; open</button>
+    <!-- END subnav -->
+    
+   
+     <main id="maincontent" role="main">
+      <h1 id="_1">寄存器说明</h1>
+<p><center>
+安科瑞BMS通讯用寄存器说明 <a href="../../assets/references/安科瑞ABMSmodbus通讯寄存器.pdf">查看</a>
+</center></p>
+<hr />
+<p><center>
+安科瑞提供BMS 485通讯协议 <a href="../../assets/references/ABMS-EV03 ModbusRTU 通讯协议.pdf">1</a> <a href="../../assets/references/ABMS-EV03 ModbusRTU协议-附件参数设置.pdf">2</a>
+</center></p>
+     </main>
+
+     <aside id="page-toc" class="page-toc" role="complementary" aria-label="Table of Contents for this page">
+       <button aria-label="Close" id="page-toc__closebtn" class="page-toc__closebtn">X</button>
+       <h2 class="page-toc__heading">On this Page:</h2>
+<ul>
+
+    <li class="page-toc__item"><a href="#_1" class="page-toc__link" tabindex="0">寄存器说明</a></li>
+    
+
+</ul>
+
+     </aside>
+   
+
+   
+     
+      <a href="../frame/" class="maincontent__link maincontent__link--previous-page">Previous: 原理架构</a>
+    
+    
+      <a href="../../soft/device/" class="maincontent__link maincontent__link--next-page">Next: 设备端</a>
+    
+   
+
+    
+    <footer class="footer-main" role="contentinfo">
+      
+        <p>yqmcu. Built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://hfagerlund.github.io/mkdocs-docskimmer/">docSkimmer theme</a>.</p>
+      
+    </footer>
+    
+  </div><!-- END .wrapper -->
+  <a class="skiptotop" href="#top">back to top</a>
+
+  
+    
+  
+
+  
+    <script src="../../js/base.js"></script>
+   
+  
+
+  <!--
+  MkDocs version : 0.16.3
+  Build Date UTC : 2017-09-29 02:55:48
+  -->
+  </body>
+</html>

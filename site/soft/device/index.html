@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>设备端 - 云电池开发备忘录</title>
+           
+        <meta name="description" content="云平台开发样品开发文档">
+        <meta name="author" content="缘起">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css">
+    <link rel="stylesheet" href="../../css/docskimmer.css" type="text/css">
+
+    
+  
+
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+	  <link rel="apple-touch-icon" href="../../img/apple-touch-icon.png">
+	  <link rel="apple-touch-icon" sizes="72x72" href="../../img/apple-touch-icon-72x72.png">
+	  <link rel="apple-touch-icon" sizes="114x114" href="../../img/apple-touch-icon-114x114.png">
+  </head>
+
+  <body>
+    <a class="skiptocontent" href="#maincontent" title="Skip to content (when browsing via audio)" accesskey="2" tabindex="1">skip to main content</a>
+    <div id="top" class="wrapper">
+    <header class="header-main" role="banner">
+  
+     <h2 class="header-main__heading"><a class="header-main__link" href="../..">云电池开发备忘录</a></h2>
+  
+</header>
+
+    
+        
+  <form class="form form--search" id="content_search" action="../../search.html" method="get" role="search">
+    <div class="form-group">
+      <label class="hidden" for="mkdocs-search-query">Search for:</label>
+      <input type="search" aria-label="Search" class="form__input" name="q" id="mkdocs-search-query" placeholder="Search the docs for..." tabindex="3"> <button type="submit" class="form__btn-submit">Search</button>
+    </div>
+  </form>
+
+    
+    
+    
+
+<nav class="nav-main" aria-label="Main menu" role="navigation">
+  <ul class="nav-main__level" role="menubar">
+    
+      
+          <li class="nav-main__item" role="menuitem">
+           	<a class="nav-main__link" href="../..">Home</a>
+          </li>
+      
+    
+      
+        <li class="nav-main__item" role="menuitem">
+          
+                               
+              <a class="nav-main__link" href="../../pre/frame/"> 研发准备</a>
+            
+          
+            
+          
+        </li>
+      
+    
+      
+        <li class="nav-main__item nav-main__item--current" role="menuitem">
+          
+                               
+              <a class="nav-main__link nav-main__link--current" href="./"><span class="visually-hidden">Current: </span>  软件设计</a>
+            
+          
+            
+          
+            
+          
+        </li>
+      
+    
+      
+        <li class="nav-main__item" role="menuitem">
+          
+                               
+              <a class="nav-main__link" href="../../hard/circuit/"> 硬件设计</a>
+            
+          
+            
+          
+            
+          
+        </li>
+      
+    
+      
+        <li class="nav-main__item" role="menuitem">
+          
+                               
+              <a class="nav-main__link" href="../../test/perform/"> 样机测试</a>
+            
+          
+            
+          
+            
+          
+        </li>
+      
+    
+      
+          <li class="nav-main__item" role="menuitem">
+           	<a class="nav-main__link" href="../../reference/">参考资料</a>
+          </li>
+      
+    
+      
+        <li class="nav-main__item" role="menuitem">
+          
+                               
+              <a class="nav-main__link" href="../../other/openluat/"> 其他</a>
+            
+          
+            
+          
+        </li>
+      
+    
+
+    
+    
+      <li class="nav-main__item nav-main__item--repo" role="menuitem">
+     	  <a class="nav-main__link nav-main__link--repo" href="https://github.com/YQMCU/ld_cloud_note">GitHub</a>
+      </li>
+    
+  </ul>
+</nav>
+
+    
+    <!-- BEGIN subnav -->
+    
+    
+      
+    
+      
+        
+        
+          
+        
+          
+        
+      
+    
+      
+        
+        
+          
+            <aside class="section-toc" role="complementary" aria-label="Table of Contents for this section">
+            <ul>
+  
+    
+      
+    
+      
+        
+          
+        
+          
+        
+      
+    
+      
+        
+          
+            <li class="section-toc__item section-toc__item--active"><a href="./" class="section-toc__link section-toc__link--active"><span class="visually-hidden">Current: </span> 设备端</a></li>
+          
+        
+          
+            <li class="section-toc__item"><a href="../server/" class="section-toc__link">服务器</a></li>
+          
+        
+          
+            <li class="section-toc__item"><a href="../cloud/" class="section-toc__link">云平台</a></li>
+          
+        
+      
+    
+      
+        
+          
+        
+          
+        
+          
+        
+      
+    
+      
+        
+          
+        
+          
+        
+          
+        
+      
+    
+      
+    
+      
+        
+          
+        
+          
+        
+      
+    
+  
+</ul>
+
+            </aside>
+          
+        
+          
+        
+          
+        
+      
+    
+      
+        
+        
+          
+        
+          
+        
+          
+        
+      
+    
+      
+        
+        
+          
+        
+          
+        
+          
+        
+      
+    
+      
+    
+      
+        
+        
+          
+        
+          
+        
+      
+    
+
+    <button id="menu-hamburger" aria-label="Open menu table of contents for this page" type="button" title="Menu">&#9776; open</button>
+    <!-- END subnav -->
+    
+   
+     <main id="maincontent" role="main">
+      <h1 id="_1">设备程序设计</h1>
+<p>使用基于lua脚本开发的<a href="http://www.openluat.com">合宙科技</a><strong>Air810</strong>模块<a href="https://item.taobao.com/item.htm?spm=a1z10.5-c.w4002-17070547242.24.4f5b64bdSxvUFv&amp;id=547529605583">采购链接</a>，
+在Lua程序中开发软件程序。</p>
+<p>程序主要完成四个功能。</p>
+<h2 id="_2">功能描述：</h2>
+<ol>
+<li>
+<p>电池状态采集</p>
+<p>状态采集基于BMS<a href="../../../pre/reg">寄存器协议</a>的，编程实现模块和BMS之间的485通讯。</p>
+<p>485通讯的本质就是串口通讯，而BMS的modbus通讯又是将无语意的串口通讯包装成有一定协议的数据帧通讯。</p>
+<p>以<strong>命令字</strong>作为读写的操作方式控制，以<strong>地址</strong>区分设备，然后十六进制数据发送通讯的内容。</p>
+<p><strong>modbus通讯协议</strong><a href="../../assets/references/MODBUS通讯协议.pdf">参考</a></p>
+</li>
+<li>
+<p>电池参数控制</p>
+<p>参数控制基于后台管理服务器和前端设备的<strong>GPRS</strong>通讯。</p>
+</li>
+<li>
+<p>定位</p>
+<p>模块支持GPS和LBS双重定位，考虑到设备应用于室内环境，GPS基本没有用，程序中关闭了GPS功能，只采用LBS向<a href="http://iot.openluat.com">合宙云平台</a>请求基站定位。</p>
+<p>基站定位是基于udp协议和合宙云平台进行通讯。</p>
+</li>
+<li>
+<p>信息的传递</p>
+<p>服务器和设备基于GPRS协议传递信息，程序中常规程序采用tcp协议通讯,保持长连接通信，并间隔发送心跳包。</p>
+<p>心跳包的作用既保证通讯的持续性，又可以在服务器端有指令待发送的时候给设备发送指令。</p>
+</li>
+</ol>
+<h2 id="_3">程序描述</h2>
+<h3 id="_4">项目结构</h3>
+<p>模块中搭建有Lua虚拟机，功能程序都是架构于Lua虚拟机之上的脚本程序，project中Lib文件夹存放设备功能实现所需要的脚本程序。</p>
+<p><center>
+<strong>项目示意图</strong></p>
+<p><img alt="项目图" src="../../../assets/images/项目示意图.png" />
+</center></p>
+<h3 id="_5">程序介绍</h3>
+<table>
+<thead>
+<tr>
+<th align="left">文件名</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">ld_info.lua</td>
+<td align="center">设备参数预设</td>
+</tr>
+<tr>
+<td align="left">ld_flash.lua</td>
+<td align="center">flash操作</td>
+</tr>
+<tr>
+<td align="left">ld_bms_cmd.lua</td>
+<td align="center">与BMS通讯读取电池数据脚本</td>
+</tr>
+<tr>
+<td align="left">ld_lbs.lua</td>
+<td align="center">基站定位</td>
+</tr>
+<tr>
+<td align="left">ld_gps</td>
+<td align="center">gps定位</td>
+</tr>
+<tr>
+<td align="left">ld_tcp_heart</td>
+<td align="center">tcp长连接通讯</td>
+</tr>
+<tr>
+<td align="left">ld_uart</td>
+<td align="center">串口处理程序</td>
+</tr>
+<tr>
+<td align="left">ld_update</td>
+<td align="center">远程脚本升级程序</td>
+</tr>
+</tbody>
+</table>
+     </main>
+
+     <aside id="page-toc" class="page-toc" role="complementary" aria-label="Table of Contents for this page">
+       <button aria-label="Close" id="page-toc__closebtn" class="page-toc__closebtn">X</button>
+       <h2 class="page-toc__heading">On this Page:</h2>
+<ul>
+
+    <li class="page-toc__item"><a href="#_1" class="page-toc__link" tabindex="0">设备程序设计</a></li>
+    
+        <li class="page-toc__item"><a href="#_2" class="page-toc__link" tabindex="0">功能描述：</a></li>
+    
+        <li class="page-toc__item"><a href="#_3" class="page-toc__link" tabindex="0">程序描述</a></li>
+    
+
+</ul>
+
+     </aside>
+   
+
+   
+     
+      <a href="../../pre/reg/" class="maincontent__link maincontent__link--previous-page">Previous: BMS寄存器</a>
+    
+    
+      <a href="../server/" class="maincontent__link maincontent__link--next-page">Next: 服务器</a>
+    
+   
+
+    
+    <footer class="footer-main" role="contentinfo">
+      
+        <p>yqmcu. Built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://hfagerlund.github.io/mkdocs-docskimmer/">docSkimmer theme</a>.</p>
+      
+    </footer>
+    
+  </div><!-- END .wrapper -->
+  <a class="skiptotop" href="#top">back to top</a>
+
+  
+    
+  
+
+  
+    <script src="../../js/base.js"></script>
+   
+  
+
+  <!--
+  MkDocs version : 0.16.3
+  Build Date UTC : 2017-09-29 02:55:48
+  -->
+  </body>
+</html>
